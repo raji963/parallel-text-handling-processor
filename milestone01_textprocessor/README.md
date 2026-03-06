@@ -2,7 +2,7 @@
 
 ## Project Objective
 
-The objective of this project is to build a structured text processing system that analyzes customer feedback text files. 
+The objective of this project is to build a structured text processing system that analyzes customer feedback text files.
 
 The system performs rule-based sentiment analysis and detects issue-related keywords. The processed results are stored in a SQLite database and summarized for analysis.
 
@@ -13,6 +13,7 @@ The system performs rule-based sentiment analysis and detects issue-related keyw
 This project processes **customer feedback text**.
 
 The input consists of customer reviews or feedback statements that may contain:
+
 - Positive opinions (e.g., good, excellent, happy)
 - Negative opinions (e.g., bad, problem, hate)
 - Issue-related keywords (e.g., error, fail, issue)
@@ -31,37 +32,39 @@ Read Text
 → Store Results in SQLite Database  
 → Display Summary Statistics  
 
-### Step-by-Step Flow Explanation
+---
 
-1. Read Text  
-   The system reads a text file containing customer feedback.
+## Step-by-Step Flow Explanation
 
-2. Break into Chunks  
-   The text is divided into smaller word-based chunks for structured processing.
+### 1. Read Text
+The system reads a text file containing customer feedback.
 
-3. Process  
-   Each chunk is processed individually.
+### 2. Break into Chunks
+The text is divided into smaller word-based chunks for structured processing.
 
-4. Apply Scoring  
-   Positive and negative word counts are calculated.  
-   Sentiment score = (Positive Count − Negative Count)
+### 3. Process
+Each chunk is processed individually.
 
-5. Pattern Detection  
-   Keywords like "error", "issue", and "fail" are detected.
+### 4. Apply Scoring
+Positive and negative word counts are calculated.
 
-6. Store in Database  
-   Each processed chunk along with score and detected keywords is stored in SQLite.
+Sentiment Score = **(Positive Count − Negative Count)**
 
-7. Display Summary  
-   The system displays:
-   - Total number of processed chunks
-   - Average sentiment score
+### 5. Pattern Detection
+Keywords like **"error", "issue", and "fail"** are detected.
+
+### 6. Store in Database
+Each processed chunk along with score and detected keywords is stored in **SQLite**.
+
+### 7. Display Summary
+The system displays:
+
+- Total number of processed chunks
+- Average sentiment score
 
 ---
 
 ## Project Structure
-
-
 Milestone01_TextProcessor/
 │
 ├── main.py
@@ -73,8 +76,9 @@ Milestone01_TextProcessor/
 ├── .gitignore
 │
 └── sample_texts/
-       └── feedback.txt
+└── feedback.txt
 
+---
 
 ## Technologies Used
 
