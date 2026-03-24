@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Review Analyzer</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans flex flex-col min-h-screen">
+
+<!-- LANDING PAGE (DARK) -->
+<div id="landing-page" class="flex-grow flex flex-col items-center justify-center px-4">
+  <h1 class="text-4xl md:text-5xl font-bold mb-10 text-center text-purple-500">Customer Review Analyzer</h1>
+  <div class="w-full max-w-3xl relative">
+    <div class="bg-gray-800 border border-gray-700 rounded-2xl p-5 shadow-lg">
+      <textarea id="textInput" rows="5" placeholder="Type or paste review text..." class="w-full resize-none outline-none text-gray-200 text-lg placeholder-gray-400 bg-gray-900 rounded-lg p-3"></textarea>
+      <div class="flex justify-between items-center mt-4 border-t border-gray-700 pt-4">
+        <div class="flex items-center space-x-3">
+          <button id="attachBtn" class="px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700">📎 Attach Files</button>
+          <input type="file" id="fileInput" accept=".txt,.csv,.xlsx" multiple class="hidden">
+          <span id="filesCount" class="text-sm text-gray-400">0 files uploaded</span>
+        </div>
+        <div class="flex space-x-2">
+          <button id="resetBtn" class="px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-500">Reset</button>
+          <button id="analyzeBtn" class="px-6 py-2 bg-purple-700 text-white rounded-full hover:bg-purple-800">Analyze</button>
+        </div>
+      </div>
+      <div id="errorMessage" class="hidden mt-2 text-red-500 text-sm"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD PAGE (LIGHT) -->
+<div id="dashboard-page" class="hidden flex-grow flex flex-col p-6 overflow-y-auto bg-white text-gray-900">
+  <nav class="flex justify-between items-center mb-6">
+    <h1 class="text-xl font-bold">Analysis Results</h1>
+    <button id="newAnalysisBtn" class="px-4 py-2 bg-gray-600 rounded-full hover:bg-gray-500">← Start New</button>
+  </nav>
+
+  <!-- Metrics -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div class="bg-gray-100 p-4 rounded-xl shadow text-center">
+      <p class="text-gray-500">Total Evaluated</p>
+      <p class="text-3xl font-bold" id="metric-total">0</p>
+    </div>
+    <div class="bg-green-100 p-4 rounded-xl shadow text-center">
+      <p class="text-gray-500">Positive</p>
+      <p class="text-green-600 text-3xl font-bold" id="metric-positive">0</p>
+    </div>
+    <div class="bg-red-100 p-4 rounded-xl shadow text-center">
+      <p class="text-gray-500">Negative</p>
+      <p class="text-red-600 text-3xl font-bold" id="metric-negative">0</p>
+    </div>
+    <div class="bg-yellow-100 p-4 rounded-xl shadow text-center">
+      <p class="text-gray-500">Neutral</p>
+      <p class="text-yellow-600 text-3xl font-bold" id="metric-neutral">0</p>
+    </div>
+  </div>
+
+  <p id="performanceInfo" class="text-sm text-gray-500 mb-4 text-center"></p>
+
+  <!-- Charts -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-gray-100 p-4 rounded-xl shadow">
+      <h2 class="font-bold text-gray-500 mb-2">Sentiment Distribution</h2>
+      <canvas id="sentimentChart" class="h-64"></canvas>
+    </div>
+    <div class="bg-gray-100 p-4 rounded-xl shadow">
+      <h2 class="font-bold text-gray-500 mb-2">Score Frequency</h2>
+      <canvas id="scoreBarChart" class="h-64"></canvas>
+    </div>
+    <div class="bg-gray-100 p-4 rounded-xl shadow md:col-span-2">
+      <h2 class="font-bold text-gray-500 mb-2">Top 10 Words</h2>
+      <canvas id="topWordsChart" class="h-64"></canvas>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-gray-100 rounded-xl shadow overflow-hidden">
+    <div class="p-4 flex justify-between items-center border-b border-gray-300">
+      <input type="text" id="searchInput" placeholder="Search reviews..." class="px-3 py-2 border border-gray-300 rounded-full w-full md:w-64">
+      <button id="exportBtn" class="px-4 py-2 bg-purple-600 text-white rounded-full hover:bg-purple-700">Download CSV</button>
+    </div>
+    <div class="overflow-y-auto max-h-96">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-gray-200 sticky top-0">
+          <tr>
+            <th class="px-4 py-2">Review Output</th>
+            <th class="px-4 py-2 text-center">Score</th>
+            <th class="px-4 py-2 text-center">Classification</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTableBody" class="divide-y divide-gray-300"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
