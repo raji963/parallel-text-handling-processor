@@ -93,10 +93,11 @@ python edge_case_tester.py
 
 ## ⚡ Parallel Processing
 
-- Uses multiprocessing.Pool
-- Work divided across CPU cores
-- Optimized chunk size
-- Improves performance significantly
+- ## ⚡ Parallel Processing
+- Uses `concurrent.futures.ThreadPoolExecutor`
+- Work divided safely across CPU threads to prevent server blocking
+- Optimized chunk size dynamically calculated based on CPU cores
+- Improves performance significantly for large files (50k+ records)
 
 ---
 
