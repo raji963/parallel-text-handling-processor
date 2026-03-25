@@ -177,7 +177,10 @@ function renderCharts(data){
             labels:['Positive','Negative','Neutral'], 
             datasets:[{label:'Sentiment', data:[pos,neg,neu], backgroundColor:['#16a34a','#dc2626','#eab308']}]
         },
-        options: { plugins: { legend: { position: 'bottom' } } }
+        options: { 
+            maintainAspectRatio: false, // 🔥 FIX: Keeps the chart small!
+            plugins: { legend: { position: 'bottom' } } 
+        }
     });
     
     // Sort bar chart sequentially
@@ -190,7 +193,10 @@ function renderCharts(data){
             labels:sortedScores, 
             datasets:[{label:'Number of Reviews', data:sortedCounts, backgroundColor:'#7c3aed', borderRadius: 4}]
         },
-        options: { plugins: { legend: { display: false } } }
+        options: { 
+            maintainAspectRatio: false, // 🔥 FIX: Keeps the chart small!
+            plugins: { legend: { display: false } } 
+        }
     });
 }
 
@@ -223,6 +229,7 @@ function renderTopWordsChart(data){
             datasets:[{label:'Word Count', data:top.map(x=>x[1]), backgroundColor:'#f97316', borderRadius: 4}]
         },
         options:{
+            maintainAspectRatio: false, // 🔥 FIX: Keeps the chart small!
             indexAxis:'y', 
             responsive:true,
             plugins: { legend: { display: false } }

@@ -58,20 +58,25 @@
   <p id="performanceInfo" class="text-sm text-gray-500 mb-4 text-center"></p>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-    <div class="bg-gray-100 p-4 rounded-xl shadow">
-      <h2 class="font-bold text-gray-500 mb-2">Sentiment Distribution</h2>
-      <canvas id="sentimentChart" class="h-64"></canvas>
+    <div class="bg-gray-100 p-4 rounded-xl shadow flex flex-col items-center">
+      <h2 class="font-bold text-gray-500 mb-2 w-full text-left">Sentiment Distribution</h2>
+      <div class="relative w-full h-64 flex justify-center">
+        <canvas id="sentimentChart"></canvas>
+      </div>
     </div>
-    <div class="bg-gray-100 p-4 rounded-xl shadow">
-      <h2 class="font-bold text-gray-500 mb-2">Score Frequency</h2>
-      <canvas id="scoreBarChart" class="h-64"></canvas>
+    <div class="bg-gray-100 p-4 rounded-xl shadow flex flex-col items-center">
+      <h2 class="font-bold text-gray-500 mb-2 w-full text-left">Score Frequency</h2>
+      <div class="relative w-full h-64 flex justify-center">
+        <canvas id="scoreBarChart"></canvas>
+      </div>
     </div>
-    <div class="bg-gray-100 p-4 rounded-xl shadow md:col-span-2">
-      <h2 class="font-bold text-gray-500 mb-2">Top 10 Words</h2>
-      <canvas id="topWordsChart" class="h-64"></canvas>
+    <div class="bg-gray-100 p-4 rounded-xl shadow md:col-span-2 flex flex-col items-center">
+      <h2 class="font-bold text-gray-500 mb-2 w-full text-left">Top 10 Words</h2>
+      <div class="relative w-full h-64 flex justify-center">
+        <canvas id="topWordsChart"></canvas>
+      </div>
     </div>
   </div>
-
   <div class="bg-gray-100 rounded-xl shadow overflow-hidden">
     <div class="p-4 flex flex-col md:flex-row justify-between items-center gap-4 border-b border-gray-300">
       <input type="text" id="searchInput" placeholder="Search reviews..." class="px-3 py-2 border border-gray-300 rounded-full w-full md:w-64">
