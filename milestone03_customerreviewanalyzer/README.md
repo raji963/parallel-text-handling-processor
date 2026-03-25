@@ -93,5 +93,6 @@ Open your web browser and navigate to:
 http://127.0.0.1:5000/
 
 
-**Conclusion**
+**
+Conclusion**
 The Customer Review Analyzer efficiently processes large sets of customer reviews, classifying them as positive, negative, or neutral. It handles big datasets using parallel processing, shows results clearly on an interactive dashboard, and allows searching and exporting both full and filtered data. The system safely manages repeated words, negations, and intensifiers to provide accurate sentiment intelligence. Overall, it is a fast, reliable, and user-friendly tool for enterprise data analysis.
