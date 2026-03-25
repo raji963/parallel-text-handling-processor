@@ -1,0 +1,8 @@
+ID,Review,Score,Sentiment,Tags,Keywords
+1,The product is excellent and I love it,2,Positive,Appreciation,
+2,Very bad experience and extremely poor support,-4,Negative,Complaint,
+3,Delivery was fast and amazing,2,Positive,Appreciation,
+4,Good quality and great service,2,Positive,Appreciation,
+5,Terrible delay and worst response,-2,Negative,"Complaint,Critical Issue",delay
+6,I had an issue with refund process,-1,Negative,"Complaint,Critical Issue","refund,issue"
+7,Really awesome product,2,Positive,Appreciation,
