@@ -1,0 +1,16 @@
+ID,Review Text,Rule Score,TextBlob Score,VADER Score,Sentiment,Issues
+11118,The customer service was terrible and the staff was very rude and unhelpful.,-7.0,-0.695,-0.75,Negative,
+11119,Absolutely fantastic experience. The team was wonderful and very helpful.,8.0,0.533,0.893,Positive,
+11120,The product is okay but nothing special. Average quality for the price.,0.0,0.236,-0.348,Neutral,
+11121,The product quality is excellent and amazing. I love using it every day.,7.0,0.7,0.914,Positive,
+11122,Great value for money. Works perfectly and I am extremely happy with it.,6.0,0.867,0.94,Positive,
+11123,Not bad but could be better. Some features are good but others are poor.,1.0,0.287,0.668,Positive,
+11124,The delivery was fast and the packaging was good. Happy with my purchase.,3.0,0.567,0.765,Positive,
+11125,The website kept showing an error and I could not complete my purchase.,-2.0,-0.05,-0.402,Negative,error
+11126,This is the worst product I have ever bought. Completely broken on arrival.,-4.0,-0.7,-0.817,Negative,broken
+11127,Terrible terrible terrible. Worst customer service I have ever experienced.,-11.0,-0.64,-0.925,Negative,
+11128,Horrible experience. The item arrived damaged and support never responded.,-5.0,-1.0,-0.572,Negative,damaged
+11129,The product failed after one week. Very disappointing and poor quality overall.,-7.0,-0.42,-0.879,Negative,"fail, failed"
+11130,Very good quality product. Arrived on time and works as described perfectly.,1.5,0.955,0.812,Positive,
+11131,Outstanding service and excellent product. Will definitely buy again soon.,6.0,0.5,0.886,Positive,
+11132,Amazing product love it so much. Exceeded all my expectations completely.,4.0,0.35,0.84,Positive,
