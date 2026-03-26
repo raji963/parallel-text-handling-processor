@@ -11,7 +11,10 @@ POSITIVE_WORDS = {
     "smooth","easy","clean","beautiful","attractive","affordable",
     "worth","value","quick","responsive","supportive","delightful",
     "enjoyed","liked","works","working","fine","ok","okay",
-    "pleased","top","quality","premium","comfortable","convenient"
+    "pleased","top","quality","premium","comfortable","convenient",
+    # 🔥 NEW WORDS FOR NEWS & REAL-WORLD CONTEXT 🔥
+    "profitable", "growth", "stable", "masterpiece", "innovative", "seamless", 
+    "thrilled", "flawless", "breakthrough", "recovery", "soaring", "success"
 }
 
 NEGATIVE_WORDS = {
@@ -21,7 +24,9 @@ NEGATIVE_WORDS = {
     "crashed","lag","laggy","delay","delayed","hard","confusing",
     "annoying","frustrating","weak","low","damage","damaged",
     "missing","incomplete","wrong","fake","faulty","poorly",
-    "expensive","overpriced","notworking","unstable","freeze","freezing"
+    "expensive","overpriced","notworking","unstable","freeze","freezing",
+    # 🔥 NEW WORDS FOR NEWS & REAL-WORLD CONTEXT 🔥
+    "decline", "loss", "unacceptable", "scam", "corrupt", "plummet", "crisis", "failure", "boycott"
 }
 
 # =========================
@@ -33,7 +38,7 @@ def split_text(text):
     return [s.strip() for s in sentences if s.strip()]
 
 # =========================
-# SPLIT INTO CHUNKS (NEW 🔥)
+# SPLIT INTO CHUNKS
 # =========================
 def split_into_chunks(data, chunk_size=10000):
     return [data[i:i + chunk_size] for i in range(0, len(data), chunk_size)]
@@ -88,7 +93,7 @@ def analyze_single_text(text):
     return (text, score, sentiment)
 
 # =========================
-# MAIN FUNCTION (UPDATED 🔥)
+# MAIN FUNCTION
 # =========================
 def analyze_texts(texts):
     cores = cpu_count()

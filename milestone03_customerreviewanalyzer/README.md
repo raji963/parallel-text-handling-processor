@@ -1,8 +1,8 @@
+
 # Customer Review Analyzer (Milestone 03)
 
 ## 1. Project Overview
 The Customer Review Analyzer is a complete, end-to-end web application built with Python (Flask) and JavaScript. It is designed to perform large-scale sentiment analysis on massive datasets (50,000+ records) using parallel processing. The system accurately classifies unstructured text as Positive, Negative, or Neutral, providing business intelligence through an interactive and visual dashboard.
-
 
 ---
 
@@ -23,7 +23,7 @@ The Customer Review Analyzer is a complete, end-to-end web application built wit
 ---
 
 ## 3. Dataset Details
-* **Type of Data:** Unstructured customer feedback and reviews.
+* **Type of Data:** Unstructured customer feedback, product reviews, and business news.
 * **Format:** Tested using real-world `.csv` and `.xlsx` files containing variable row lengths.
 * **Volume:** Optimized and stress-tested specifically for enterprise-level datasets ranging from 50,000 to 1,000,000 rows.
 
@@ -31,7 +31,7 @@ The Customer Review Analyzer is a complete, end-to-end web application built wit
 
 ## 4. How Sentiment Analysis is Implemented
 
-The application utilizes a custom Natural Language Processing (NLP) scoring engine. The exact Positive and Negative word counts are visibly displayed on the frontend table for every evaluated review.
+The application utilizes a custom Natural Language Processing (NLP) scoring engine. The exact Positive and Negative word counts are visibly displayed on the frontend table for every evaluated review. The vocabulary has been expanded to handle business, financial, and news contexts (e.g., "profitable", "deficit", "growth", "crash").
 
 **Rule-Based Approach & Special Cases:**
 * **Direct Matches:** Positive words increase the score (+1), and negative words decrease the score (-1).
@@ -41,11 +41,12 @@ The application utilizes a custom Natural Language Processing (NLP) scoring engi
 
 ---
 
-## 5. Explanation of Parallel Processing Logic
-To process 50,000+ records without crashing the application, the system replaces traditional sequential loops with concurrent execution.
-* **Implementation:** Uses `concurrent.futures.ThreadPoolExecutor` to safely distribute tasks across multiple CPU threads without blocking the Flask server.
-* **Optimization:** The system dynamically calculates the optimal chunk size based on the hardware's available CPU cores.
-* **Result:** Significantly improves performance for large files by evaluating data arrays simultaneously across the processor.
+## 5. Explanation of Parallel Processing & Internal Flow
+To process 50,000+ records without crashing the application, the system uses a **Chunking and Aggregation** architecture via `concurrent.futures.ThreadPoolExecutor`.
+
+* **How Chunks are Created:** The backend mathematically divides the dataset. For example, 50,000 records processed on an 8-core CPU are sliced into 8 equal arrays (chunks) of 6,250 records each.
+* **Thread Dispatch:** Each CPU core takes one chunk and independently runs the sentiment analysis loop in an isolated thread, preventing Flask server blocking.
+* **How Merging Happens:** Once threads finish, they return lists of dictionary objects. The main thread aggregates these sub-lists back into a single, sequential array using list extension, ensuring the original data order is preserved before sending the JSON response to the frontend.
 
 ---
 
@@ -58,19 +59,28 @@ To process 50,000+ records without crashing the application, the system replaces
 | 100 Records  | ~0.05s              | ~0.15s              | Slower (Due to thread-creation overhead) |
 | 50,000 Records| ~6.44s             | **~4.29s** | **1.5x Faster** (Optimal CPU utilization) |
 
-**Analysis:** Parallel processing exhibits slower execution times for exceptionally small datasets due to the computational overhead required to spin up and manage threads. However, as the dataset scales to 50,000+ records, the overhead becomes negligible, and parallel processing becomes significantly faster.
+**Detailed Performance Reasoning:**
+* **Why it is slower for small data:** Spawning threads, allocating memory, and context-switching creates "overhead." For 100 rows, the CPU spends more time setting up the threads than it does calculating the sentiment.
+* **Why it is faster for large data:** For massive datasets, the actual mathematical calculation time heavily outweighs the thread-setup overhead. By dividing the workload, the system bypasses the single-thread bottleneck, resulting in a massive speedup.
 
 ---
 
-## 7. Edge Cases Handled
+## 7. System Limitations & Future Scope
+While the expanded rule-based lexicon handles negations, intensifiers, and business contexts effectively, rule-based systems have inherent limitations in complex, real-world environments:
+* **Sarcasm Detection:** A phrase like *"Oh great, another broken feature"* contains the positive word "great" but is contextually negative. Rule-based engines struggle with implied sarcasm.
+* **Context-Based Meaning:** The word "unpredictable" is positive in a movie review (*"an unpredictable thriller"*) but negative in a software review (*"unpredictable server crashes"*). 
+* **Future Enhancements:** To make the system completely robust for complex sentences and sarcasm, the next iteration would involve replacing the manual lexicon with a pre-trained contextual Machine Learning model (such as VADER or a BERT Transformer) which understands deep sentence structures rather than just exact keyword matching.
+
+---
+
+## 8. Edge Cases Handled
 * **Empty Input:** The UI prevents submission of empty text/files and alerts the user gracefully.
 * **Invalid File Types / Corrupted Data:** The backend safely skips blank rows, null values, or unreadable characters without causing application crashes.
-* **Grammar Exceptions:** Successfully parses complex sentence structures, including repeated words, negations, and intensifiers.
 * **Browser Freezing (Memory Management):** The frontend strictly limits DOM table rendering to the top 500 rows. This prevents the browser from crashing when evaluating 50,000+ rows, while still allowing the user to export the entirety of the processed data to a CSV file.
 
 ---
 
-## 8. Tech Stack
+## 9. Tech Stack
 * **Backend:** Python, Flask, `concurrent.futures`
 * **Frontend:** HTML, Tailwind CSS, Vanilla JavaScript
 * **Data Visualization:** Chart.js
@@ -78,9 +88,11 @@ To process 50,000+ records without crashing the application, the system replaces
 
 ---
 
-## 9. Steps to Run the Project
+## 10. Steps to Run the Project
 
 **1. Install Dependencies**
+
+Bash
 pip install -r requirements.txt
 
 **2. Run the Application**
@@ -93,6 +105,5 @@ Open your web browser and navigate to:
 http://127.0.0.1:5000/
 
 
-**
-Conclusion**
+## 11.conclusion
 The Customer Review Analyzer efficiently processes large sets of customer reviews, classifying them as positive, negative, or neutral. It handles big datasets using parallel processing, shows results clearly on an interactive dashboard, and allows searching and exporting both full and filtered data. The system safely manages repeated words, negations, and intensifiers to provide accurate sentiment intelligence. Overall, it is a fast, reliable, and user-friendly tool for enterprise data analysis.

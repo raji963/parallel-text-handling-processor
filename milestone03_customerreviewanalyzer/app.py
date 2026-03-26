@@ -13,7 +13,10 @@ POSITIVE_WORDS = {
     "fast","friendly","helpful","super","superb","cool","impressive","reliable","efficient",
     "smooth","easy","clean","beautiful","attractive","affordable","worth","value","quick",
     "responsive","supportive","delightful","enjoyed","liked","works","working","fine","ok",
-    "okay","pleased","top","quality","premium","comfortable","convenient"
+    "okay","pleased","top","quality","premium","comfortable","convenient",
+    # 🔥 NEW WORDS FOR NEWS & REAL-WORLD CONTEXT 🔥
+    "profitable", "growth", "stable", "masterpiece", "innovative", "seamless", 
+    "thrilled", "flawless", "breakthrough", "recovery", "soaring", "success"
 }
 
 NEGATIVE_WORDS = {
@@ -22,7 +25,9 @@ NEGATIVE_WORDS = {
     "difficult","cheap","waste","wasted","error","bugs","buggy","crash","crashed","lag",
     "laggy","delay","delayed","hard","confusing","annoying","frustrating","weak","low",
     "damage","damaged","missing","incomplete","wrong","fake","faulty","poorly","expensive",
-    "overpriced","notworking","unstable","freeze","freezing"
+    "overpriced","notworking","unstable","freeze","freezing",
+    # 🔥 NEW WORDS FOR NEWS & REAL-WORLD CONTEXT 🔥
+    "decline", "loss", "unacceptable", "scam", "corrupt", "plummet", "crisis", "failure", "boycott"
 }
 
 word_regex = re.compile(r'\b[a-z]+\b')
@@ -66,7 +71,6 @@ def analyze_text(text):
     score = pos - neg
     sentiment = "Positive" if score > 0 else "Negative" if score < 0 else "Neutral"
     
-    # 🔥 THE FIX IS HERE: We are now sending "Positive": pos and "Negative": neg to the frontend!
     return {"Text": str(text), "Score": score, "Sentiment": sentiment, "Positive": pos, "Negative": neg}
 
 # ---------------- PARALLEL THREAD POOL ----------------
