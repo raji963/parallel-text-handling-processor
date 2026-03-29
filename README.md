@@ -79,4 +79,8 @@ The application utilizes a custom Rule-Based NLP engine.
 ---
 
 ## 9. Conclusion
-The Python Parallel Text Handling Processor efficiently bridges the gap between raw data and business intelligence. By combining **Parallel Computing**, **Optimized Data Structures (Sets)**, and **Persistent Storage (SQL)**, it provides a scalable, fast, and reliable solution for enterprise-level sentiment analysis.
+The Python Parallel Text Handling Processor is a complete system for analyzing large amounts of text data efficiently. It classifies text into positive, negative, and neutral sentiments using a rule-based approach with support for negation and intensifiers.
+
+The use of parallel processing helps in handling large datasets faster, while Set-based optimization improves performance by reducing lookup time. The addition of SQLite storage ensures data is saved reliably, and the overall system provides useful features like file upload, visualization, and data export.
+
+Overall, the project is fast, reliable, and scalable, and it meets real-world requirements. It can be further improved in the future by using machine learning models for better accuracy and deeper text understanding.
